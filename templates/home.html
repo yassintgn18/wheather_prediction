@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}hhhhh{% endblock %}
+
+{% block content %}
+
+<img src="/static/weather.avif" alt="walo">
+<div>
+    <h2 style="color: rgb(91, 91, 91);margin-left: 20PX;">Welcome to Météo Essaouira!</h2>
+    <!-- Add home page content here -->
+    <div  class="date">
+    <h3 style="color: rgb(0, 0, 0);text-shadow: 5px 5px 5px rgb(201, 201, 201);margin-left: 20PX;font-size: 30PX;">{{ jour }} :</h3>
+    <h3 style="color: rgb(0, 0, 0);text-shadow: 5px 5px 5px rgb(201, 201, 201);margin-left: 20PX;font-size: 30PX;">{{dateLyouma}}</h3></div>
+<!--
+    <ul style="margin-left: 400PX;
+                ">
+        {% for i in tem %}
+            <li style="display: inline-block; margin: 0 10px;">{{ i }}°
+            </li>
+        {% endfor %} 
+    </ul>
+
+    <ul style="margin-left: 400PX;
+                ">
+        {% for i in hours %}
+            <li style="display: inline-block; margin: 0 10px;">{{ i }}
+            </li>
+        {% endfor %} 
+    </ul>
+
+    <ul style="margin-left: 400PX;
+            ">
+        {% for i in pers %}
+            <li style="display: inline-block; margin: 0 10px;">{{ i }}%
+            </li>
+        {% endfor %} 
+    </ul>
+
+    <ul style="margin-left: 400PX;
+            ">
+        {% for i in precipitation %}
+            <li style="display: inline-block; margin: 0 10px;">{{ i }}mm
+            </li>
+        {% endfor %} 
+    </ul>
+
+    <ul style="margin-left: 400PX;
+            ">
+        {% for i in speed %}
+            <li style="display: inline-block; margin: 0 10px;">{{ i }}km/h
+            </li>
+        {% endfor %} 
+    </ul>
+
+    <ul style="margin-left: 400PX;
+            ">
+        {% for i in range(8) %}
+            <li style="display: inline-block; margin: 0 10px;">N
+            </li>
+        {% endfor %} 
+    </ul>
+
+    <ul style="margin-left: 400PX;
+            ">
+        {% for i in humidity %}
+            <li style="display: inline-block; margin: 0 10px;">{{i}}%
+            </li>
+        {% endfor %} 
+    </ul>
+
+    <table style="margin: 0 auto;border: 2PX solid lightblue;">
+        <tr>
+            <th style="margin: 5px;">Hour</th>
+            <th style="margin: 5px;">Temperature (°)</th>
+            
+            <th style="margin: 5px;">Percentage</th>
+            <th style="margin: 5px;">Precipitation (mm)</th>
+            <th style="margin: 5px;">Wind Speed (km/h)</th>
+            <th style="margin: 5px;">Wind Direction</th>
+            <th style="margin: 5px;">Humidity (%)</th>
+        </tr>
+        {% for i in range(8) %}
+           
+            <tr style="margin: 5px;border: 2PX solid lightblue;">
+                <td>{{ hours[i] }}</td>
+                <td>{{ tem[i] }}°</td>
+                <td>{{ pers[i] }}%</td>
+                <td>{{ precipitation[i] }}mm</td>
+                <td>{{ speed[i] }}km/h</td>
+                <td>N</td>
+                <td>{{ humidity[i] }}%</td>
+                
+            </tr>
+        {% endfor %} 
+    </table>-->
+
+
+    <table style="  margin: 0 auto;width: 100%;
+                    border-spacing: 5px;border-collapse: separate;">
+
+         
+        <tr>
+            <th>Time</th>
+            {% for hour in hours %}
+                <td>{{ hour }}:00</td>
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <th>Temperature</th>
+            {% for temp in tem %}
+                <td>{{ temp }}°</td>
+            {% endfor %}
+        </tr>
+       
+        <tr>
+            <th>Precipitation</th>
+            {% for prec in precipitation %}
+                <td>{{ prec }}mm</td>
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <th>Wind Speed</th>
+            {% for spd in speed %}
+                <td>{{ spd }}km/h</td>
+            {% endfor %}
+        </tr>
+        
+        <tr>
+            <th>direction</th>
+            {% for humid in range(8) %}
+                <td>N</td>
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <th>Humidity</th>
+            {% for humid in humidity %}
+                <td>{{ humid }}%</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+
+   
+    <br>
+    <br>
+  
+    
+    <br><br>
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Météo Marrakech{% endblock %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+	<div class="alert alert-warning alert-dismissible fade show alertmy" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+{% endfor %}
+  <main>
+          
+    <!--<img src="/static/weather.avif" alt="walo"-->
+    
+    <h1 style="color: rgb(43, 159, 231);margin-left: 20PX;margin-bottom: 20PX;">                              Welcome to wheather Marrakech
+        <h1 class="jour">{{jour}}</h1>
+    </h1>
+
+
+
+	<!-- {% if not boo %}
+    	<img src="{{ url_for('static', filename=dark) }}" alt="dark" width="30px" height="30px" id="icon">
+	{% else %}
+		<img src="{{ url_for('static', filename=light) }}" alt="light" width="30px" height="30px" id="icon">
+	{% endif %} -->
+
+
+    <div class="row "  >
+
+
+		
+     
+        
+        <h1 class="tp">Today's Predictionion:</h1>
+
+        
+        <div class="container2">
+            <table class="table  border-primary table-dark table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col" class="ft">Probability</th>
+                        <th scope="col" class="ft">Time</th>
+                        <th scope="col" class="ft">Temperature</th>
+                        <th scope="col" class="ft">Wind Speed</th>
+                        <th scope="col" class="ft">Precipitation</th>
+                        <th scope="col" class="ft">Cloud Cover</th>
+                    </tr>
+                </thead>
+                
+
+                <tbody>
+                    {% for i in range(8) %}
+                        <tr>
+                            <th scope="row">
+                                {% if current_hour >=  hoursforbonne[i] %}
+                                    <div class="ro">
+                                        <form action="/bonne" method="post">
+
+                                            <input type="hidden" name="temperature" value="{{ infos[i]['temperature'] }}">
+                                            <input type="hidden" name="temps" value="{{ infos[i]['temps'] }}">
+                                            <input type="hidden" name="cloud_cover" value="{{ infos[i]['cloud_cover'] }}">
+                                            <input type="hidden" name="precipitation" value="{{ infos[i]['precipitation'] }}">
+                                            <input type="hidden" name="wind_speed" value="{{ infos[i]['wind_speed_80m'] }}">
+                
+                                            <input type="submit" class="bo st" value="bonne">
+                                        </form>
+                
+                                        
+                                        <form action="/mauvaise" method="post">
+                
+                                            <input type="hidden" name="temperature" value="{{ infos[i]['temperature'] }}">
+                                            <input type="hidden" name="temps" value="{{ infos[i]['temps'] }}">
+                                            <input type="hidden" name="cloud_cover" value="{{ infos[i]['cloud_cover'] }}">
+                                            <input type="hidden" name="precipitation" value="{{ infos[i]['precipitation'] }}">
+                                            <input type="hidden" name="wind_speed" value="{{ infos[i]['wind_speed_80m'] }}">
+	
+                                                                    
+                                            <input type="submit" value="mauvaise" class="ma st" >
+                                        </form>
+                                    </div>
+                                {% else %}
+                                    <div class="ro">
+                                        <h3 class="pred bo" id="left">P: {{predicton_list[i][1]}}</h3>
+                                        <h3 class="pred ma" id="right">P: {{predicton_list[i][2]}}</h3>
+                                    </div>
+                                {% endif %}
+
+                            </th>
+                            <td>{{infos[i]['temps'] }}</td>
+                            <td><img src=" {{ url_for('static',filename =infos[i]['image'])  }}"  alt="faux " width="50px" height="50px" class="rounded-circle"> {{infos[i]['temperature']}}°</td>
+                            <td>{{infos[i]['wind_speed_80m']}} km/h</td>
+                            <td>
+                                {% if infos[i]['precipitation'] !=0.0 %}
+                                    <img src="static/images/umbrella.png" alt="faux " width="15%">
+                                {% endif %}
+                                {{infos[i]['precipitation']}}%
+                            </td>
+                            <td>{{infos[i]['cloud_cover']}}%</td>
+                        </tr>
+                    {% endfor %}
+
+
+                </tbody>
+            </table>
+            </div>
+
+
+            <a href="{{ url_for('showdb') }}" style="font-size: 17px;margin-left: 80px;margin-bottom: 20px;width: 200px;" class="btn btn-dark btn-sm">Show all statues...</a>
+            <p>  </p>
+            <a href="{{ url_for('logout') }}" style="font-size: 17px;margin-left: 80px;margin-bottom: 20px;width: 200px;" class="btn btn-outline-warning btn-sm">Logout!!!</a>
+
+
+		
+		
+
+
+    </div>
+</main>
+
+{% endblock content %}

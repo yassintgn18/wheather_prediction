@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Météo Marrakech{% endblock %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+	
+	<div class="alert alert-warning alert-dismissible fade show" role="alert" style="z-index: 100;">
+	  {{ message }}
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+	
+{% endfor %}
+
+<div class="foggylogin position-absolute top-50 start-50 translate-middle">
+  <h3 class="text-primary">Signin ...</h3>
+
+
+
+    <form class="row g-3 needs-validation under" novalidate method="POST">
+
+        {{ form.hidden_tag() }}
+        <div class="myform">
+          <div class="labelh">
+          
+            {{form.username.label(class="form-label form-label fot_white")}}
+            {{ form.username(class="form-control") }}
+            
+          </div>
+          <div class="labelh">
+          
+            {{form.password.label(class="form-label form-label fot_white" )}}
+              {{ form.password(class="form-control") }}
+            
+          </div>
+          
+          
+        </div>
+        
+        <br>
+        <div>
+          {{form.submit(class="btn btn-primary position-absolute top-100 start-50 translate-middle")}}
+        </div>
+  
+      </form>
+    
+
+
+      
+
+</div>
+
+
+{% endblock content %}
+
+
+
+

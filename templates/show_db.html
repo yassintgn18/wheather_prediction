@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Météo Marrakech{% endblock %}
+
+{% block content %}
+
+<h1>{{ui}}</h1>
+{{d}}
+
+{% for data in data %}
+
+<table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">usernmae</th>
+        <th scope="col">passwodrd</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{data.id2}}</th>
+        <td>{{data.id_user}}</td>
+        <td>{{data.statue2}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endfor %}
+
+
+
+
+{% endblock content %}

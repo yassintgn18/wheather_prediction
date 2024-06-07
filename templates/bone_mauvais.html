@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- {% for i in range(8) %}
+    {{ predicton_list[i][0] }}
+    <p style="color: rgb(18, 224, 80);">bonne: {{ predicton_list[i][1] }}</p> 
+    <p style="color: rgb(232, 36, 36);">mauvaise: {{ predicton_list[i][2] }}</p>
+    <br><hr>
+{% endfor %} -->
+
+
+
+<ul>
+
+    {% for user in users %}
+
+        <li class="bm">{{user.temperature2}}</li>
+        <li class="bm">{{user.cloud_cover2}}</li>
+        <li class="bm">{{user.precipitation2}}</li>
+        <li class="bm">{{user.wind_speed2}}</li>
+
+        <li class="bm">{{user.statue2}}</li>
+        
+        <li class="bm">{{user.date_created2}}</li>
+
+
+        <br>
+        <hr>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Météo Marrakech{% endblock %}
+
+{% block content %}
+  <main>
+          
+    <!--<img src="/static/weather.avif" alt="walo"-->
+    
+    <h1 style="color: rgb(43, 159, 231);margin-left: 20PX;margin-bottom: 50PX;">                              Welcome to Météo Marrakech</h1>
+
+
+
+	{% if not boo %}
+    	<img src="{{ url_for('static', filename=dark) }}" alt="dark" width="30px" height="30px" id="icon">
+	{% else %}
+		<img src="{{ url_for('static', filename=light) }}" alt="light" width="30px" height="30px" id="icon">
+	{% endif %}
+
+
+    <div class="row "  >
+
+
+		<h1 class="jour">{{jour}}</h1>
+
+
+		
+
+		
+
+		<nav class="navbar mynav2 navbar-expand-lg bg-body-tertiary">
+       
+			<div class="collapse navbar-collapse" id="navbarNav">
+			  <ul class="navbar-nav mynav">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="#" style="color: rgb(43, 231, 99);">probability of good</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="#" style="color: rgb(231, 84, 43);">probability of bad</a>
+				  </li>
+				<li class="nav-item">
+				  <a class="nav-link active" aria-current="page" href="#" style="color: rgb(43, 159, 231)">temps</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#" style="color: rgb(43, 159, 231)">temperature</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#" style="color: rgb(43, 159, 231)">wind_speed</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#" style="color: rgb(43, 159, 231)">precipitation</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#" style="color: rgb(43, 159, 231)">cloud_cover</a>
+				</li>
+			  </ul>
+			</div>
+		 
+		</nav>
+
+		{% for i in range(8) %}
+
+			<div class="infos">
+			
+				<ul class="nav1 list-group list-group-horizontal">
+					
+					
+					{% if current_hour >=  hoursforbonne[i] %}
+						<form action="/bonne" method="post">
+
+							<input type="hidden" name="temperature" value="{{ infos[i]['temperature'] }}">
+                    		<input type="hidden" name="cloud_cover" value="{{ infos[i]['cloud_cover'] }}">
+                    		<input type="hidden" name="precipitation" value="{{ infos[i]['precipitation'] }}">
+                    		<input type="hidden" name="wind_speed" value="{{ infos[i]['wind_speed_80m'] }}">
+
+							<input type="submit" class="bo" value="bonne">
+						</form>
+
+						
+						<form action="/mauvaise" method="post">
+
+							<input type="hidden" name="temperature" value="{{ infos[i]['temperature'] }}">
+							<input type="hidden" name="cloud_cover" value="{{ infos[i]['cloud_cover'] }}">
+							<input type="hidden" name="precipitation" value="{{ infos[i]['precipitation'] }}">
+							<input type="hidden" name="wind_speed" value="{{ infos[i]['wind_speed_80m'] }}">	
+													
+							<input type="submit" value="mauvaise" class="ma" >
+						</form>
+					{% else %}
+						<h3 class="pred bo" id="left">P: {{predicton_list[i][1]}}</h3>
+						<h3 class="pred ma" id="right">P: {{predicton_list[i][2]}}</h3>
+					{% endif %}
+
+					<li class="temps list-group-item"><H4>{{infos[i]['temps'] }}</H4></li>
+
+					<li class="temperature list-group-item"><h5><img src=" {{ url_for('static',filename =infos[i]['image'])  }}"  alt="faux " width="30px" height="30px"> {{infos[i]['temperature']}}° </h5></li>
+
+					<li class="wind_speed list-group-item"><p>{{infos[i]['wind_speed_80m']}} km/h</p></li>
+
+					<li class="precipitation list-group-item">
+						<h5>{% if infos[i]['precipitation'] !=0.0 %}
+								<img src="static/images/umbrella.png" alt="faux " width="15%">
+							{% endif %}
+							{{infos[i]['precipitation']}}%
+						</h5>
+					</li>
+
+					<li class="cloud_cover list-group-item"><h5>{{infos[i]['cloud_cover']}}%</h5></li>
+
+
+					
+				</ul>
+			</div>
+		{% endfor %} 
+
+
+
+
+    </div>
+</main>
+
+{% endblock content %}

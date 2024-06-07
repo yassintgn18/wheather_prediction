@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Météo Marrakech{% endblock %}
+
+{% block content %}
+
+<h3>what is your name!!!</h3>
+{% if name %}
+    <h4>hello {{name}}</h4>
+{% else %}
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        {{form.name.label()}}
+        {{ form.name() }}
+
+        {{form.submit()}}
+    </form>
+    
+
+{% endif %}
+
+
+
+
+{% endblock content %}
